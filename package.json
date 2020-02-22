@@ -1,0 +1,41 @@
+{
+    "name": "classic-auctions",
+    "version": "1.0.0",
+    "description": "Classic wow auction site",
+    "author": "Andreas Kruhlmann <kruhlmann@protonmail.com>",
+    "homepage": "https://github.com/Kruhlmann/classic-auctions#readme",
+    "license": "GPL-3.0-or-later",
+    "scripts": {
+        "start": "npm run build && node dist/src/main.js",
+        "build": "tsc",
+        "watch": "tsc -w",
+        "test": "mocha -r ts-node/register tests/*.spec.ts",
+        "coverage": "nyc npm run test",
+        "migrate": "node-pg-migrate",
+        "upgrade": "DATABASE_URL=postgres://$CA_DB_USR:$CA_DB_PWD@localhost:5432/$CA_DB_NAM yarn run migrate up",
+        "downgrade": "DATABASE_URL=postgres://$CA_DB_USR:$CA_DB_PWD@localhost:5432/$CA_DB_NAM yarn run migrate down"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Kruhlmann/classic-auctions.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Kruhlmann/classic-auctions/issues"
+    },
+    "dependencies": {
+        "@istanbuljs/nyc-config-typescript": "^1.0.1",
+        "@types/chai": "^4.2.9",
+        "@types/mocha": "^7.0.1",
+        "@types/node": "^13.7.4",
+        "@types/sequelize": "^4.28.8",
+        "chai": "^4.2.0",
+        "express": "^4.17.1",
+        "mocha": "^7.0.1",
+        "node-pg-migrate": "^4.2.2",
+        "nyc": "^15.0.0",
+        "pg": "^7.18.2",
+        "sequelize": "^5.21.5",
+        "ts-node": "^8.6.2",
+        "typescript": "^3.8.2"
+    }
+}
