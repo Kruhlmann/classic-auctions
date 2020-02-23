@@ -5,10 +5,11 @@
  * @packageDocumentation
  */
 
-import { Router } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import parser from "body-parser";
 import compression from "compression";
+import { log } from "util";
 
 /**
  * Applies cors headers to a router.
@@ -41,3 +42,9 @@ export function hdl_compr(r: Router) {
     r.use(compression());
 }
 
+export function hdl_log(r: Router) {
+    r.use((req: Request, _res: Response, next: NextFunction) => {
+        log(`Request from ${req.ip} to ${req.path}`);
+        next();
+    });
+}

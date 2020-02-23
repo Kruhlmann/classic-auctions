@@ -6,8 +6,8 @@
     "homepage": "https://github.com/Kruhlmann/classic-auctions#readme",
     "license": "GPL-3.0-or-later",
     "scripts": {
-        "start": "yarn run build && node ./dist/src/server.js",
-        "dev": "tsc-watch --onSuccess \"node ./dist/src/server.js\"",
+        "start": "yarn run build && node ./dist/src/index.js",
+        "dev": "tsc-watch --onSuccess \"node ./dist/src/index.js\"",
         "build": "tsc",
         "watch": "tsc -w",
         "test": "mocha -r ts-node/register tests/*.spec.ts",

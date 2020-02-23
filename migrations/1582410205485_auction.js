@@ -40,8 +40,8 @@ exports.up = (pgm) => {
             notNull: false,
             default: null,
         },
-        owner: {
-            type: "varchar(32)",
+        seller_id: {
+            type: "uuid",
             notNull: true,
         },
         expires_on: {
@@ -68,6 +68,12 @@ exports.up = (pgm) => {
         foreignKeys: {
             columns: "faction_id",
             references: "faction(id)",
+        },
+    });
+    pgm.createConstraint("auction", "fk_auction_player", {
+        foreignKeys: {
+            columns: "seller_id",
+            references: "player(id)",
         },
     });
 };

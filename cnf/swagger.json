@@ -8,11 +8,24 @@
     "basePath": "/api/v1",
     "schemes": ["http"],
     "produces": ["application/json"],
+    "tags": [
+        {
+            "name": "auctions",
+            "description": "Endpoint for auctions"
+        },
+        {
+            "name": "factions",
+            "description": "Endpoint for auction house factions"
+        },
+        {
+            "name": "servers",
+            "description": "Endpoint for Blizzard game servers"
+        }
+    ],
     "paths": {
         "/auctions": {
             "get": {
-                "tags": ["Search text"],
-                "summary": "Retrieve auction information",
+                "tags": ["auctions"],
                 "responses": {
                     "200": { "description": "OK" },
                     "400": { "description": "Bad Request" },
@@ -23,6 +36,82 @@
                         "name": "q",
                         "in": "query",
                         "description": "Query string",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/factions": {
+            "get": {
+                "tags": ["factions"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": []
+            },
+            "post": {
+                "tags": ["factions"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the faction",
+                        "type": "string"
+                    }
+                ]
+            },
+            "delete": {
+                "tags": ["factions"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the faction",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/servers": {
+            "get": {
+                "tags": ["servers"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": []
+            },
+            "post": {
+                "tags": ["servers"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the faction",
+                        "type": "string"
+                    },
+                    {
+                        "name": "region_id",
+                        "in": "query",
+                        "description": "ID of region the server is located in",
                         "type": "string"
                     }
                 ]

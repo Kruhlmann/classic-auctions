@@ -10,5 +10,5 @@ import swagger_ui from "swagger-ui-express";
 import swagger_doc from "../../cnf/swagger.json";
 
 export function hdl_api_docs(r: Router) {
-    r.use("/api-docs", swagger_ui.serve, swagger_ui.setup(swagger_doc));
+    r.use("/docs", swagger_ui.serve, swagger_ui.setup(swagger_doc));
 }

@@ -14,11 +14,18 @@ exports.up = (pgm) => {
             type: "varchar(512)",
             notNull: true,
         },
+        updatedAt: {
+            type: "timestamp",
+            default: pgm.func("NOW()"),
+            notNull: true,
+        },
+        createdAt: {
+            type: "timestamp",
+            default: pgm.func("NOW()"),
+            notNull: true,
+        },
     });
     pgm.createIndex("faction", "id");
-    pgm.sql("INSERT INTO faction (name) VALUES ('horde')");
-    pgm.sql("INSERT INTO faction (name) VALUES ('alliance')");
-    pgm.sql("INSERT INTO faction (name) VALUES ('neutral')");
 };
 
 exports.down = (pgm) => {

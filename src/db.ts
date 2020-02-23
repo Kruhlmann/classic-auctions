@@ -6,32 +6,26 @@
  */
 
 import { Sequelize } from "sequelize";
+import init_models from "./models";
 
-let db: DBConnection;
+let instance: Sequelize;
 
-class DBConnection {
-    private _instance: Sequelize;
-
-    constructor(usr: string, pwd: string, nam: string) {
-        this._instance = new Sequelize({
-            database: nam,
-            username: usr,
-            password: pwd,
-            dialect: "postgres",
-            host: "localhost",
-        });
+export default function get(): Sequelize {
+    if (instance) {
+        return instance;
     }
-
-    public get instance(): Sequelize {
-        return this._instance;
-    }
+    initdb();
+    return instance;
 }
 
-export function get(): Sequelize {
-    if (db) {
-        return db.instance;
-    }
+export function initdb(): void {
     const { CA_DB_USR, CA_DB_PWD, CA_DB_NAM } = process.env;
-    db = new DBConnection(CA_DB_USR, CA_DB_PWD, CA_DB_NAM);
-    return db.instance;
+    instance = new Sequelize({
+        database: CA_DB_NAM,
+        username: CA_DB_USR,
+        password: CA_DB_PWD,
+        dialect: "postgres",
+        host: "localhost",
+    });
+    init_models(instance);
 }

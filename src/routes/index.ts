@@ -6,5 +6,7 @@
  */
 
 import auctions from "./auctions";
+import servers from "./servers";
+import factions from "./factions";
 
-export default [...auctions];
+export default [...auctions, ...servers, ...factions];

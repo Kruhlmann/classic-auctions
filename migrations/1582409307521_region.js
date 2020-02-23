@@ -18,14 +18,16 @@ exports.up = (pgm) => {
             type: "varchar(512)",
             notNull: true,
         },
+        updatedAt: {
+            type: "timestamp",
+            notNull: true,
+        },
+        createdAt: {
+            type: "timestamp",
+            notNull: true,
+        },
     });
     pgm.createIndex("region", "id");
-    pgm.sql(
-        "INSERT INTO region (short_name, long_name) VALUES ('na', 'north america')"
-    );
-    pgm.sql(
-        "INSERT INTO region (short_name, long_name) VALUES ('eu', 'europe')"
-    );
 };
 
 exports.down = (pgm) => {

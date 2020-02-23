@@ -21,3 +21,10 @@ export type Route = {
     handler: RequestHandler | RequestHandler[];
 };
 
+export enum LoggingLevel {
+    DEV = 0,
+    INF = 1,
+    WAR = 2,
+    ERR = 3,
+}
+

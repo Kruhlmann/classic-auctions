@@ -18,6 +18,14 @@ exports.up = (pgm) => {
             type: "uuid",
             notNull: true,
         },
+        updatedAt: {
+            type: "timestamp",
+            notNull: true,
+        },
+        createdAt: {
+            type: "timestamp",
+            notNull: true,
+        },
     });
     pgm.createConstraint("server", "fk_server_region", {
         foreignKeys: {
