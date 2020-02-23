@@ -7,6 +7,8 @@
 
 import { Sequelize } from "sequelize";
 import init_models from "./models";
+import { log } from "./log";
+import { LoggingLevel } from "./interfaces";
 
 let instance: Sequelize;
 
@@ -18,7 +20,19 @@ export default function get(): Sequelize {
     return instance;
 }
 
-export function initdb(): void {
+export function initdb(test: boolean = false): void | Sequelize {
+    if (test) {
+        const i = new Sequelize({
+            username: "postgres",
+            password: "postgres",
+            database: "classic_auctions_test",
+            dialect: "postgres",
+            host: "localhost",
+            logging: () => {},
+        });
+        init_models(i);
+        return i;
+    }
     const { CA_DB_USR, CA_DB_PWD, CA_DB_NAM } = process.env;
     instance = new Sequelize({
         database: CA_DB_NAM,
@@ -26,6 +40,7 @@ export function initdb(): void {
         password: CA_DB_PWD,
         dialect: "postgres",
         host: "localhost",
+        logging: (msg) => log(msg, LoggingLevel.DEV),
     });
     init_models(instance);
 }
