@@ -158,3 +158,4 @@ export default function(s: Sequelize): void {
     init_player(s);
     init_auction(s);
 }
+
