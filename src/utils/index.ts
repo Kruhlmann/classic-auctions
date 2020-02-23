@@ -33,3 +33,4 @@ export function apl_routes(routes: Route[], router: Router) {
         (router as any)[r.method](r.path, r.handler);
     }
 }
+

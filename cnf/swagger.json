@@ -1,0 +1,32 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Classic Auctions",
+        "version": "1.0.0"
+    },
+    "host": "localhost:5000",
+    "basePath": "/api/v1",
+    "schemes": ["http"],
+    "produces": ["application/json"],
+    "paths": {
+        "/auctions": {
+            "get": {
+                "tags": ["Search text"],
+                "summary": "Retrieve auction information",
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Query string",
+                        "type": "string"
+                    }
+                ]
+            }
+        }
+    }
+}

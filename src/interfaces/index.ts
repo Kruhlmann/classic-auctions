@@ -20,3 +20,4 @@ export type Route = {
     method: string;
     handler: RequestHandler | RequestHandler[];
 };
+

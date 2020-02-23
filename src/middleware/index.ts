@@ -6,5 +6,6 @@
  */
 
 import { hdl_cors, hdl_compr, hdl_body_parse } from "./common";
+import { hdl_api_docs } from "./api_docs";
 
-export default [hdl_cors, hdl_compr, hdl_body_parse];
+export default [hdl_cors, hdl_compr, hdl_body_parse, hdl_api_docs];

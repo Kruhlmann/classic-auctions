@@ -6,13 +6,21 @@
  */
 
 import { Request, Response } from "express";
+import { HTTP405Error } from "../../utils/http_errors";
 
 export default [
     {
-        path: "/",
+        path: "/auctions",
         method: "get",
         handler: async (_req: Request, res: Response) => {
-            res.send("Hello, World!");
+            res.send("Hello, Auctions!");
+        },
+    },
+    {
+        path: "/auctions",
+        method: "post",
+        handler: async (_req: Request, _res: Response) => {
+            throw new HTTP405Error();
         },
     },
 ];
