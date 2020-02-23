@@ -26,7 +26,7 @@ function init_faction(s: Sequelize): void {
                 allowNull: false,
             },
         },
-        { sequelize: s, tableName: "faction" }
+        { sequelize: s, tableName: "faction", underscored: true }
     );
 }
 
@@ -48,8 +48,9 @@ function init_server(s: Sequelize): void {
                 allowNull: false,
             },
         },
-        { sequelize: s, tableName: "region" }
+        { sequelize: s, tableName: "server", underscored: true }
     );
+    Server.belongsTo(Region, { as: "region", foreignKey: "region_id" });
 }
 
 function init_region(s: Sequelize): void {
@@ -70,7 +71,7 @@ function init_region(s: Sequelize): void {
                 allowNull: false,
             },
         },
-        { sequelize: s, tableName: "region" }
+        { sequelize: s, tableName: "region", underscored: true }
     );
 }
 
@@ -91,13 +92,10 @@ function init_player(s: Sequelize): void {
                 type: DataTypes.UUID,
                 allowNull: false,
             },
-            faction_id: {
-                type: DataTypes.UUID,
-                allowNull: false,
-            },
         },
-        { sequelize: s, tableName: "region" }
+        { sequelize: s, tableName: "player", underscored: true }
     );
+    Player.belongsTo(Server, { as: "server", foreignKey: "server_id" });
 }
 
 function init_auction(s: Sequelize): void {
@@ -146,8 +144,11 @@ function init_auction(s: Sequelize): void {
                 allowNull: false,
             },
         },
-        { sequelize: s, tableName: "region" }
+        { sequelize: s, tableName: "auction", underscored: true }
     );
+    Auction.belongsTo(Faction, { as: "faction", foreignKey: "faction_id" });
+    Auction.belongsTo(Server, { as: "server", foreignKey: "server_id" });
+    Auction.belongsTo(Player, { as: "seller", foreignKey: "seller_id" });
 }
 
 export default function(s: Sequelize): void {

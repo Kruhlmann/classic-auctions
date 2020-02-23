@@ -20,6 +20,10 @@
         {
             "name": "servers",
             "description": "Endpoint for Blizzard game servers"
+        },
+        {
+            "name": "regions",
+            "description": "Endpoint for Blizzard game server regions"
         }
     ],
     "paths": {
@@ -84,6 +88,39 @@
                 ]
             }
         },
+        "/regions": {
+            "get": {
+                "tags": ["regions"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": []
+            },
+            "post": {
+                "tags": ["regions"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": [
+                    {
+                        "name": "short_name",
+                        "in": "query",
+                        "description": "Region name abbreviation",
+                        "type": "string"
+                    },
+                    {
+                        "name": "long_name",
+                        "in": "query",
+                        "description": "Region full name",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
         "/servers": {
             "get": {
                 "tags": ["servers"],
@@ -112,6 +149,22 @@
                         "name": "region_id",
                         "in": "query",
                         "description": "ID of region the server is located in",
+                        "type": "string"
+                    }
+                ]
+            },
+            "delete": {
+                "tags": ["servers"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the server",
                         "type": "string"
                     }
                 ]

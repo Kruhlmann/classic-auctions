@@ -8,7 +8,7 @@
 //import * as Sentry from "@sentry/node";
 import * as fs from "fs";
 import * as path from "path";
-import { LoggingLevel } from "./interfaces";
+import { LoggingLevel } from "../interfaces";
 
 const months = [
     "January",
@@ -29,6 +29,8 @@ const months = [
 const logging_formats = {
     [LoggingLevel.DEV]: (msg: string, time: string) =>
         `[\x1b[32mDEV\x1b[0m] [\x1b[36m${time}\x1b[0m] ${msg}`,
+    [LoggingLevel.SQL]: (msg: string, time: string) =>
+        `[\x1b[35mSQL\x1b[0m] [\x1b[36m${time}\x1b[0m] ${msg}`,
     [LoggingLevel.INF]: (msg: string, time: string) =>
         `[\x1b[37mINF\x1b[0m] [\x1b[36m${time}\x1b[0m] ${msg}`,
     [LoggingLevel.WAR]: (msg: string, time: string) =>
@@ -64,7 +66,7 @@ export function log(msg: string, level: LoggingLevel = LoggingLevel.INF): void {
     const now_locale = now.toLocaleString("en-GB", { timeZone: "UTC" });
     const formatted_message = logging_formats[level](msg, now_locale);
     const d = `${months[now.getMonth()]}_${now.getDate()}_${now.getFullYear()}`;
-    const log_path = path.resolve(__dirname, `../../logs/${d}.log`);
+    const log_path = path.resolve(__dirname, `../../../logs/${d}.log`);
 
     if (!fs.existsSync(log_path)) {
         const header = `# LOGS FOR ${process.env.NODE_ENV.toUpperCase()} #\n`;

@@ -8,5 +8,6 @@
 import auctions from "./auctions";
 import servers from "./servers";
 import factions from "./factions";
+import regions from "./regions";
 
-export default [...auctions, ...servers, ...factions];
+export default [...auctions, ...servers, ...factions, ...regions];

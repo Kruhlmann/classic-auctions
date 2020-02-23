@@ -16,7 +16,7 @@ export async function create(name: string): Promise<Faction> {
     if (!name || name.length < 1) {
         throw new HTTP400Error();
     }
-    return Faction.create({ name });
+    return Faction.create({ name: name.toLowerCase() });
 }
 
 /**

@@ -11,8 +11,8 @@ import { apl_middleware, apl_routes } from "./utils";
 import middleware from "./middleware";
 import err_handlers from "./middleware/error_handlers";
 import routes from "./routes";
-import * as ec from "./exit_codes";
-import { handle_exception, log } from "./log";
+import * as ec from "./utils/exit_codes";
+import { handle_exception, log } from "./utils/log";
 import { initdb } from "./db";
 
 process.on("uncaughtException", (e: Error) => {

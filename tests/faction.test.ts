@@ -7,8 +7,8 @@ describe("FactionsAPI", () => {
     const faction_name = randomBytes(256).toString("hex");
     const faction_name_long = randomBytes(257).toString("hex");
 
-    describe("truncate", () => {
-        test("will truncate", async (done) => {
+    describe("operations", () => {
+        it("successfully truncates the table", async (done) => {
             await controller.truncate(true);
             const factions = await controller.get_all();
             expect(factions.length).toEqual(0);
@@ -17,7 +17,7 @@ describe("FactionsAPI", () => {
     });
 
     describe("post /faction", () => {
-        test("valid request", async (done) => {
+        it("creates a faction on valid request", async (done) => {
             const faction = await controller.create(faction_name);
             expect(faction).toBeDefined();
             const factions = await controller.get_all();
@@ -25,19 +25,28 @@ describe("FactionsAPI", () => {
             expect(factions.find((f) => f.id === faction.id)).toBeDefined();
             done();
         });
-        test("name too long", () => {
+        it("rejects a request with a name exceeding 512 characters", () => {
             expect(controller.create(faction_name_long)).rejects.toThrow();
         });
-        test("empty name", () => {
+        it("rejects a request with an empty name", () => {
             expect(controller.create("")).rejects.toThrow();
         });
-        test("undefined name", () => {
+        it("rejects a request with an undefined name", () => {
             expect(controller.create(undefined)).rejects.toThrow();
         });
     });
 
+    describe("get /faction", () => {
+        it("retrieves factions", async (done) => {
+            const factions = await controller.get_all();
+            expect(factions).toBeDefined();
+            expect(factions.length).toBeGreaterThan(0);
+            done();
+        });
+    });
+
     describe("delete /faction", () => {
-        test("valid request", async (done) => {
+        it("delets an existing faction", async (done) => {
             let factions = await controller.get_all();
             let faction = factions.find((f) => f.name === faction_name);
             expect(faction).toBeDefined();

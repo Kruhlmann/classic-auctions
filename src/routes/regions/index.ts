@@ -1,5 +1,5 @@
 /**
- * @file Server routes for /servers endpoint.
+ * @file Server routes for /region endpoint.
  * @author kruhlmann <echo "yw5kcmvhc0brcnvobg1hbm4uzgv2cg==" | base64 -d>
  * @since 1.0.0
  * @packageDocumentation
@@ -10,29 +10,31 @@ import * as controller from "./controller";
 
 export default [
     {
-        path: "/servers",
+        path: "/regions",
         method: "get",
         handler: async (_req: Request, res: Response) => {
-            controller.get_all().then((servers) => {
-                res.json(servers);
+            controller.get_all().then((regions) => {
+                res.json(regions);
             });
         },
     },
     {
-        path: "/servers",
+        path: "/regions",
         method: "post",
         handler: async (req: Request, res: Response) => {
-            controller.create(req.query.name, req.query.region_id).then((s) => {
-                res.json(s);
-            });
+            controller
+                .create(req.query.short_name, req.query.long_name)
+                .then((region) => {
+                    res.json(region);
+                });
         },
     },
     {
-        path: "/servers",
+        path: "/regions",
         method: "delete",
         handler: async (req: Request, res: Response) => {
-            controller.destroy(req.query.id).then((s) => {
-                res.json(s);
+            controller.destroy(req.query.id).then((region) => {
+                res.json(region);
             });
         },
     },

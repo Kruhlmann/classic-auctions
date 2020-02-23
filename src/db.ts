@@ -7,7 +7,7 @@
 
 import { Sequelize } from "sequelize";
 import init_models from "./models";
-import { log } from "./log";
+import { log } from "./utils/log";
 import { LoggingLevel } from "./interfaces";
 
 let instance: Sequelize;
@@ -40,7 +40,7 @@ export function initdb(test: boolean = false): void | Sequelize {
         password: CA_DB_PWD,
         dialect: "postgres",
         host: "localhost",
-        logging: (msg) => log(msg, LoggingLevel.DEV),
+        logging: (msg) => log(msg, LoggingLevel.SQL),
     });
     init_models(instance);
 }

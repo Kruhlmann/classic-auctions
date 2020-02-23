@@ -23,8 +23,9 @@ export type Route = {
 
 export enum LoggingLevel {
     DEV = 0,
-    INF = 1,
-    WAR = 2,
-    ERR = 3,
+    SQL = 1,
+    INF = 2,
+    WAR = 3,
+    ERR = 4,
 }
 
