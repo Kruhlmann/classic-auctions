@@ -11,7 +11,6 @@ export class Player extends Model {
     public id!: string;
     public name!: string;
     public server_id!: string;
-    public faction_id!: string;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }

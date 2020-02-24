@@ -24,6 +24,10 @@
         {
             "name": "regions",
             "description": "Endpoint for Blizzard game server regions"
+        },
+        {
+            "name": "players",
+            "description": "Endpoint for auction authors"
         }
     ],
     "paths": {
@@ -119,6 +123,22 @@
                         "type": "string"
                     }
                 ]
+            },
+            "delete": {
+                "tags": ["regions"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the region",
+                        "type": "string"
+                    }
+                ]
             }
         },
         "/servers": {
@@ -165,6 +185,55 @@
                         "name": "id",
                         "in": "query",
                         "description": "ID of the server",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/players": {
+            "get": {
+                "tags": ["players"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": []
+            },
+            "post": {
+                "tags": ["players"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of the player",
+                        "type": "string"
+                    },
+                    {
+                        "name": "server_id",
+                        "in": "query",
+                        "description": "ID of server of the player",
+                        "type": "string"
+                    }
+                ]
+            },
+            "delete": {
+                "tags": ["players"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the player",
                         "type": "string"
                     }
                 ]
