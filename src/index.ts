@@ -39,4 +39,3 @@ server.listen(PORT, () => {
     log(`Server started on ::${PORT}`);
     log(`Serving content on path ${CA_BASEPATH}/`);
 });
-
