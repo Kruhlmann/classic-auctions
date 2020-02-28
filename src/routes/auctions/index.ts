@@ -6,7 +6,6 @@
  */
 
 import { Request, Response } from "express";
-import { HTTP405Error } from "../../utils/http_errors";
 import * as controller from "./controller";
 
 export default [
@@ -14,7 +13,7 @@ export default [
         path: "/auctions",
         method: "get",
         handler: async (_req: Request, res: Response) => {
-            controller.get_all_auctions().then((auctions) => {
+            controller.get_all().then((auctions) => {
                 res.json(auctions);
             });
         },
@@ -22,8 +21,10 @@ export default [
     {
         path: "/auctions",
         method: "post",
-        handler: async (_req: Request, _res: Response) => {
-            throw new HTTP405Error();
+        handler: async (req: Request, res: Response) => {
+            controller.create(req.body).then((auction) => {
+                res.json(auction);
+            });
         },
     },
 ];

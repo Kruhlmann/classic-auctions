@@ -7,6 +7,10 @@
 
 import { Auction } from "../../models/auction";
 
-export async function get_all_auctions(): Promise<Auction[]> {
+export async function get_all(): Promise<Auction[]> {
     return Auction.findAll();
+}
+
+export async function create(options: Auction): Promise<Auction> {
+    return Auction.create(options);
 }

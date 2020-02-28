@@ -39,12 +39,25 @@
                     "400": { "description": "Bad Request" },
                     "401": { "description": "Unauthorized" }
                 },
+                "parameters": []
+            },
+            "post": {
+                "tags": ["auctions"],
+                "responses": {
+                    "200": { "description": "OK" },
+                    "400": { "description": "Bad Request" },
+                    "401": { "description": "Unauthorized" }
+                },
                 "parameters": [
                     {
-                        "name": "q",
-                        "in": "query",
-                        "description": "Query string",
-                        "type": "string"
+                        "name": "server_id",
+                        "in": "body",
+                        "description": "ID of the server",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "0667018d-ea2c-4adb-8103-93da7e4b84e5"
+                        }
                     }
                 ]
             }
@@ -71,7 +84,8 @@
                         "name": "name",
                         "in": "query",
                         "description": "Name of the faction",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     }
                 ]
             },
@@ -87,7 +101,8 @@
                         "name": "id",
                         "in": "query",
                         "description": "ID of the faction",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     }
                 ]
             }
@@ -114,13 +129,15 @@
                         "name": "short_name",
                         "in": "query",
                         "description": "Region name abbreviation",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     },
                     {
                         "name": "long_name",
                         "in": "query",
                         "description": "Region full name",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     }
                 ]
             },
@@ -136,7 +153,8 @@
                         "name": "id",
                         "in": "query",
                         "description": "ID of the region",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     }
                 ]
             }
@@ -163,13 +181,15 @@
                         "name": "name",
                         "in": "query",
                         "description": "Name of the faction",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     },
                     {
                         "name": "region_id",
                         "in": "query",
                         "description": "ID of region the server is located in",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     }
                 ]
             },
@@ -185,7 +205,8 @@
                         "name": "id",
                         "in": "query",
                         "description": "ID of the server",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     }
                 ]
             }
@@ -212,13 +233,15 @@
                         "name": "name",
                         "in": "query",
                         "description": "Name of the player",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     },
                     {
                         "name": "server_id",
                         "in": "query",
                         "description": "ID of server of the player",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     }
                 ]
             },
@@ -234,7 +257,8 @@
                         "name": "id",
                         "in": "query",
                         "description": "ID of the player",
-                        "type": "string"
+                        "type": "string",
+                        "required": true
                     }
                 ]
             }
